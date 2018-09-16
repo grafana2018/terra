@@ -20,7 +20,7 @@ pipeline {
         }
         stage('terraform init') {
             steps {
-                sh 'cd jenkins'
+                sh 'cd terra'
                 sh 'sudo terraform init'
             }
         }
