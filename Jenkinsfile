@@ -14,18 +14,18 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sh 'rm -r *'
-                sh 'git clone https://github.com/aleti-pavan/jenkins.git'
+                sh 'sudo rm -r *'
+                sh 'sudo git clone https://github.com/aleti-pavan/jenkins.git'
             }
         }
         stage('terraform init') {
             steps {
-                sh '/var/lib/jenkins/workspace/terraform/terraform init ./jenkins'
+                sh 'sudo /var/lib/jenkins/workspace/terraform/terraform init ./jenkins'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'ls ./jenkins; /var/lib/jenkins/workspace/terraform/terraform plan ./jenkins'
+                sh 'ls ./jenkins; sudo /var/lib/jenkins/workspace/terraform/terraform plan ./jenkins'
             }
         }
         stage('terraform ended') {
