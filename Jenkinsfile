@@ -26,16 +26,7 @@ pipeline {
                 sh 'sudo /var/lib/jenkins/workspace/terraform/terraform init ./terra'
             }
         }
-        stage('terraform plan') {
-            steps {
-                sh 'ls ./jenkins; sudo /var/lib/jenkins/workspace/terraform/terraform plan ./terra'
-            }
-        }
-        stage('terraform ended') {
-            steps {
-                sh 'echo "Ended....!!"'
-            }
-        }
+        
 
         
     }
