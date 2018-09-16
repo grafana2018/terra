@@ -14,7 +14,7 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sudo git clone https://github.com/aleti-pavan/jenkins.git'
+                sh 'git clone https://github.com/aleti-pavan/jenkins.git'
             }
         }
         stage('terraform init') {
