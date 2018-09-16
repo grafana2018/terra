@@ -20,7 +20,7 @@ pipeline {
         }
         stage('terraform init') {
             steps {
-                sh 'sudo /var/lib/jenkins/workspace/terraform/terraform init ./jenkins'
+                sh 'terraform init --get=true ./jenkins'
             }
         }
         stage('terraform plan') {
