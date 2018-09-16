@@ -20,12 +20,12 @@ pipeline {
         }
         stage('terraform init') {
             steps {
-                sh '/var/lib/jenkins/workspace/terraform init ./jenkins'
+                sh '/var/lib/jenkins/workspace/terraform/terraform init ./jenkins'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'ls ./jenkins; /var/lib/jenkins/workspace/terraform plan ./jenkins'
+                sh 'ls ./jenkins; /var/lib/jenkins/workspace/terraform/terraform plan ./jenkins'
             }
         }
         stage('terraform ended') {
