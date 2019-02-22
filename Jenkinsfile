@@ -17,23 +17,21 @@ pipeline {
                 sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
+        stage('tfsvars create'){
+            steps {
+                sh 'sudo cp vars.tf ./terra/'
+            }
+        }
         stage('terraform init') {
             steps {
-                sh 'sudo terraform init ./terra/'
+                sh 'sudo terraform init ./terra'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'sudo terraform plan ./terra/'
+                sh 'ls ./jenkins; sudo terraform plan ./terra'
             }
         }
-        
-         stage('terraform apply') {
-            steps {
-                sh 'sudo terraform apply ./terra/'
-            }
-        }
-        
         stage('terraform ended') {
             steps {
                 sh 'echo "Ended....!!"'
