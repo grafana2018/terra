@@ -17,8 +17,8 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'whoami'
-                sh 'rm -rf *'
-                sh 'git clone https://github.com/grafana2018/terra.git'
+                sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
+                sh 'pwd'
             }
         }
  
