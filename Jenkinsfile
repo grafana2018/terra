@@ -15,7 +15,8 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
+                sh 'pwd'
+                sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
  
