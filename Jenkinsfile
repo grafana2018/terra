@@ -9,6 +9,7 @@ pipeline {
 
         stage('terraform started') {
             steps {
+                sh 'pwd'
                 sh 'echo "Started...!" '
             }
         }
