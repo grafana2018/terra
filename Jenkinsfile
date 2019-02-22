@@ -17,19 +17,19 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'whoami'
-                sh 'sudo git clone https://github.com/grafana2018/terra.git'
+                sh 'git clone https://github.com/grafana2018/terra.git'
             }
         }
  
         stage('terraform init') {
             steps {
                 sh 'pwd'
-                sh 'sudo terraform init'
+                sh 'terraform init'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'sudo terraform plan'
+                sh 'terraform plan'
             }
         }
         stage('terraform ended') {
