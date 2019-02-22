@@ -25,14 +25,12 @@ pipeline {
         stage('terraform init') {
             steps {
                 sh 'pwd'
-                sh 'cd /var/lib/jenkins/workspace/Terraform/terra'
-                sh 'pwd'
-                sh 'sudo terraform init'
+                sh 'sudo terraform init ./terra'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'sudo terraform plan'
+                sh 'sudo terraform plan ./terra'
             }
         }
         stage('terraform ended') {
