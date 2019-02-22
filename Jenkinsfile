@@ -20,6 +20,7 @@ pipeline {
         }
         stage('tfsvars create'){
             steps {
+                sh 'pwd'
                 sh 'sudo cp /home/ec2-user/vars.tf ./jenkins/'
             }
         }
