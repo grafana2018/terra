@@ -1,7 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIAIFUKXZFPED5W3HHQ"
-  secret_key = "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"
+  profile = "default"
 }
 
 resource "aws_instance" "MQTTStest" {
