@@ -18,12 +18,7 @@ pipeline {
                 sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
-      #  stage('tfsvars create'){
-      #      steps {
-      #          sh 'pwd'
-      #          sh 'sudo cp /home/ec2-user/vars.tf ./jenkins/'
-      #      }
-      #  }
+ 
         stage('terraform init') {
             steps {
                 sh 'pwd'
