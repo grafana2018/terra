@@ -26,6 +26,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'cd terra'
+                sh 'pwd'
                 sh 'sudo terraform init'
             }
         }
