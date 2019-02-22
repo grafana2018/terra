@@ -21,16 +21,21 @@ pipeline {
                 sh 'pwd'
             }
         }
- 
+       
+        stage('tfsvars create'){
+            steps {
+                sh 'sudo cp vars.tf ./terra/'
+            }
+        } 
         stage('terraform init') {
             steps {
                 sh 'pwd'
-                sh 'sudo terraform init ./terra'
+                sh 'sudo terraform init ./terra/'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'sudo terraform plan ./terra'
+                sh 'sudo terraform plan ./terra/'
             }
         }
         stage('terraform ended') {
