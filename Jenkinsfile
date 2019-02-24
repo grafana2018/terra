@@ -7,27 +7,32 @@ pipeline {
 
     stages {
 
-        stage('terraform started') {
+        stage('TF started') {
             steps {
                 sh 'echo "Started...!" '
             }
         }
-        stage('git clone') {
+        stage('SCM checkout') {
             steps {
                 sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
-        stage('terraform init') {
+        stage('TF init') {
             steps {
                 sh 'sudo /usr/bin/terraform init ./terra'
             }
         }
-        stage('terraform plan') {
+        stage('TF plan') {
             steps {
                 sh 'ls ./terra; sudo /usr/bin/terraform plan ./terra'
             }
         }
-        stage('terraform ended') {
+        stage('TF apply') {
+            steps {
+                sh 'ls ./terra; sudo /usr/bin/terraform apply ./terra'
+            }
+        }
+        stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
             }
