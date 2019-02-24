@@ -40,7 +40,7 @@ pipeline {
             steps { 
                 sh 'chmod +x config.sh'
                 sh './config.sh'
-            }                
+                           
         }  
     }
 }
