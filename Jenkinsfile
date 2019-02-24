@@ -29,7 +29,7 @@ pipeline {
         }
         stage('TF apply') {
             steps {
-                sh 'ls ./terra; sudo /usr/bin/terraform apply ./terra'
+                sh 'ls ./terra; sudo /usr/bin/terraform apply -auto-approve ./terra'
             }
         }
         stage('TF ended') {
