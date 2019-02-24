@@ -17,11 +17,6 @@ pipeline {
                 sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
-        stage('tfsvars create'){
-            steps {
-                sh 'sudo cp /opt/vars.tf ./terra/'
-            }
-        }
         stage('terraform init') {
             steps {
                 sh 'sudo /usr/bin/terraform init ./terra'
