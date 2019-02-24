@@ -32,16 +32,11 @@ pipeline {
                 sh 'ls ./terra; sudo /usr/bin/terraform apply -auto-approve ./terra'
             }
         }
+       
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
             }
-        stage('Running shell script') {
-            steps { 
-                sh 'chmod +x config.sh'
-                sh './config.sh'
-            }
         }
-        }  
     }
 }
