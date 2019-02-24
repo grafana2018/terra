@@ -14,22 +14,22 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
+                sh 'sudo rm -r *;sudo git clone https://github.com/aleti-pavan/jenkins.git'
             }
         }
         stage('tfsvars create'){
             steps {
-                sh 'sudo cp /var/lib/jenkins/workspace/vars.tf ./terra/'
+                sh 'sudo cp /home/ec2-user/vars.tf ./jenkins/'
             }
         }
         stage('terraform init') {
             steps {
-                sh 'sudo terraform init ./terra'
+                sh 'sudo /home/ec2-user/terraform init ./jenkins'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'ls ./jenkins; sudo terraform plan ./terra'
+                sh 'ls ./jenkins; sudo /home/ec2-user/terraform plan ./jenkins'
             }
         }
         stage('terraform ended') {
