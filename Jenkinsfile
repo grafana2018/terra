@@ -36,8 +36,6 @@ pipeline {
             steps {
                 sh 'echo "Ended....!!"'
             }
-        }
-
-        
+        }  
     }
 }
