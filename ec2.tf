@@ -18,3 +18,4 @@ resource "aws_instance" "MQTTS" {
     Name = "/TEST"
     Project = "testing"
   }
+  }
