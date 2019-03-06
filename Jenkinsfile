@@ -39,6 +39,12 @@ pipeline {
                 sh 'echo "Ended....!!"'
             }
         }
-   
+        
+        stage('Post build action') {
+            steps {
+                sh ' aws deploy update-deployment-group --application-name MQTTS-SREE --current-deployment-group-name produc-sree --ec2-tag-filters Key=TODAY,Value=NEWSERVER2019,Type=KEY_AND_VALUE --region us-east-1 --profile default'
+            } 
+            
+        }
     }
 }
