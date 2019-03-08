@@ -42,13 +42,14 @@ pipeline {
                 sh 'echo $ID'
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp -R ./terra /tmp/$ID'
+		sh "status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`"
+	        sh 'echo $status'
             }
         }
 
         stage('Validation') {
             steps {
-	   sh "status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`"
-	   sh 'echo $status'
+	   
 		script {
                         if ( $status == 'running' )  {
                                  echo 'Server is running state'
