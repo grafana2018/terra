@@ -19,3 +19,10 @@ resource "aws_instance" "MQTTS" {
     Project = "testing"
   }
   }
+
+output "INSTANCEID" {
+  value = "${aws_instance.MQTTS.id}"
+}
+output "EIP" {
+  value = ["${aws_instance.MQTTS.public_ip}"]
+}
