@@ -47,9 +47,9 @@ pipeline {
 
         stage('Validation') {
             steps {
-			    sh 'status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`
-				sh 'echo $status'
-				script {
+	   sh "status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`"
+	   sh 'echo $status'
+		script {
                         if [[ status -eq running ]];  {
                                  echo 'Server is running state'
                             } else {
