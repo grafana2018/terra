@@ -34,16 +34,18 @@ pipeline {
             }
         }
        
-        stage('TF ended') {
+        stage('validation') {
             steps {
                 sh 'echo "Ended....!!"'
-                ID='terraform output INSTANCEID'
-                echo $ID
+		environment {
+			ID='terraform output INSTANCEID'
+			STATUS='aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text --profile default'
+		}
+		echo $ID
+		echo $status
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp -R ./terra /tmp/$ID'
-		sh 'aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text --profile default'
-	        echo $status
-            }
+	 }
         }
 
 
