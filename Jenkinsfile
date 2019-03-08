@@ -41,7 +41,7 @@ pipeline {
                 sh 'ID=`terraform output INSTANCEID`'
                 sh 'echo $ID'
                 sh 'mkdir -p /tmp/$ID'
-                sh 'cp ./terra /tmp/$ID'
+                sh 'cp -R ./terra /tmp/$ID'
             }
         }
 
