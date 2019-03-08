@@ -37,28 +37,16 @@ pipeline {
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
-                sh "sleep 60s"
                 sh 'ID=`terraform output INSTANCEID`'
                 echo $ID
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp -R ./terra /tmp/$ID'
-		sh "status='aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text --profile default'"
+		sh 'aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text --profile default'
 	        echo $status
             }
         }
 
-        stage('Validation') {
-            steps {
-	   
-		script {
-                        if ( $status == 'running' )  {
-                                 echo 'Server is running state'
-                            } else {
-                        echo 'Server is not running'
-                              }
-                      }
-            }
-        }
+
         
         stage('Post build action') {
             steps {
