@@ -39,11 +39,11 @@ pipeline {
                 sh 'echo "Ended....!!"'
                 sh "sleep 60s"
                 sh 'ID=`terraform output INSTANCEID`'
-                sh 'echo $ID'
+                echo $ID
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp -R ./terra /tmp/$ID'
-		sh "status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`"
-	        sh 'echo $status'
+		sh "status='aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text --profile default'"
+	        echo $status
             }
         }
 
