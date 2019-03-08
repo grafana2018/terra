@@ -37,6 +37,9 @@ pipeline {
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
+                sh 'IP=`terraform output ip`'
+                sh 'mkdir -p /tmp/$IP'
+                sh 'cp ./terra /tmp/$IP'
             }
         }
         
