@@ -36,7 +36,7 @@ pipeline {
        stage('validation') {
             steps {
                 sh 'echo "Validating....!!"'
-		sh './validate.sh'	
+		sh './terra/validate.sh'	
 	 }
 	}
         stage('Post build action') {
