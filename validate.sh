@@ -9,4 +9,4 @@ echo "$ID is not running"
 fi
 
 mkdir -p /tmp/$ID
-cp -R ./terra /tmp/$ID
+cp -R * /tmp/$ID
