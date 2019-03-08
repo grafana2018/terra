@@ -37,7 +37,7 @@ pipeline {
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
-                sleep 60s
+                sh "sleep 60s"
                 sh 'ID=`terraform output INSTANCEID`'
                 sh 'echo $ID'
                 sh 'aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text'
