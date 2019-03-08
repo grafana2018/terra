@@ -37,7 +37,7 @@ pipeline {
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
-                sh 'ID=`terraform output INSTANCEID`'
+                ID='terraform output INSTANCEID'
                 echo $ID
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp -R ./terra /tmp/$ID'
