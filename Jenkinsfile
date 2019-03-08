@@ -1,3 +1,45 @@
+#!/bin/bash
+status=`aws ec2 describe-instances --filters --instance-ids=i-03644acab607e064f --region us-east-1 --query Reservations[].Instances[].State.Name'
+
+sh "status=`aws ec2 describe-instances --filters --instance-ids=i-03644acab607e064f --region us-east-1 --query Reservations[].Instances[].State.Name  --output text`"
+sh "echo $status"
+sh "if [[ status -eq running ]]; then echo "Server is running" ; else echo "failed" ; fi"
+
+
+ pipeline {
+            agent any
+
+            stages {
+                    stage('test') {
+                            steps {
+                                    sh 'echo hello'
+                            }
+                    }
+                    stage('test1') {
+                            steps {
+                                    sh 'echo $TEST'
+                            }
+                    }
+					
+					
+                    stage('validation') {
+                            steps {
+                                    script {
+                                            if (env.BRANCH_NAME == 'master') {
+                                                    echo 'I only execute on the master branch'
+                                            } else {
+                                                    echo 'I execute elsewhere'
+                                            }
+                                    }
+                            }
+                    }
+            }
+			
+			
+			
+    }
+
+	
 pipeline {
     agent {
         node {
@@ -40,12 +82,22 @@ pipeline {
                 sh "sleep 60s"
                 sh 'ID=`terraform output INSTANCEID`'
                 sh 'echo $ID'
-                sh 'aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text'
-                sh "status=`aws ec2 describe-instances --filters --instance-ids=i-03644acab607e064f --region us-east-1 --query Reservations[].Instances[].State.Name  --output text`"
-                sh "echo $status"
-                sh "if [[ status -eq running ]]; then echo "Server is running" ; else echo "failed" ; fi"
                 sh 'mkdir -p /tmp/$ID'
                 sh 'cp ./terra /tmp/$ID'
+            }
+        }
+
+        stage('Validation') {
+            steps {
+			    sh 'status=`aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text`
+				sh 'echo $status'
+				script {
+                        if [[ status -eq running ]];  {
+                                 echo 'Server is running state'
+                            } else {
+                        echo 'Server is not running'
+                              }
+                      }
             }
         }
         
