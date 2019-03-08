@@ -37,9 +37,15 @@ pipeline {
         stage('TF ended') {
             steps {
                 sh 'echo "Ended....!!"'
-                sh 'IP=`terraform output ip`'
-                sh 'mkdir -p /tmp/$IP'
-                sh 'cp ./terra /tmp/$IP'
+                sleep 60s
+                sh 'ID=`terraform output INSTANCEID`'
+                sh 'echo $ID'
+                sh 'aws ec2 describe-instances --filters --instance-ids=$ID --region us-east-1 --query Reservations[].Instances[].State.Name --output text'
+                sh "status=`aws ec2 describe-instances --filters --instance-ids=i-03644acab607e064f --region us-east-1 --query Reservations[].Instances[].State.Name  --output text`"
+                sh "echo $status"
+                sh "if [[ status -eq running ]]; then echo "Server is running" ; else echo "failed" ; fi"
+                sh 'mkdir -p /tmp/$ID'
+                sh 'cp ./terra /tmp/$ID'
             }
         }
         
