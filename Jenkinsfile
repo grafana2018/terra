@@ -15,7 +15,7 @@ pipeline {
         stage('SCM checkout') {
             steps {
                 sh 'pwd'
-                sh 'sudo rm -r *;sudo git clone https://github.com/grafana2018/terra.git'
+                sh 'sudo rm -rf *;sudo git clone https://github.com/grafana2018/terra.git'
             }
         }
         stage('TF init') {
@@ -36,7 +36,7 @@ pipeline {
        stage('validation') {
             steps {
                 echo "Validating....!!"
-		sh './terra/validate.sh'	
+		sh 'sudo ./terra/validate.sh'	
 	 }
 	}
         stage('Post build action') {
