@@ -8,5 +8,6 @@ else
 echo "$ID is not running"
 fi
 
-mkdir -p /tmp/$ID
-cp -R * /tmp/$ID
+mkdir -p /opt/$ID
+cp -R * /opt/$ID
+cp -rpP .terraform /opt/$ID
