@@ -1,3 +1,4 @@
+###SREENATH
 #!/bin/bash
 ID=`terraform output INSTANCEID`
 echo $ID
